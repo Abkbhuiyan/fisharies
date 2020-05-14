@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Medicine;
 use App\MedicineTank;
 use App\Tank;
+use App\Project;
 use Illuminate\Http\Request;
 
 class MedicineTankController extends Controller
@@ -29,6 +30,7 @@ class MedicineTankController extends Controller
     {
         $data['tanks'] = Tank::all();
         $data['medicines'] = Medicine::all();
+        $data['projects'] = Project::all();
 
         return view('admin.medicineTank.addMedicineTank',$data);
     }
@@ -45,12 +47,14 @@ class MedicineTankController extends Controller
            'tank_id' => 'required',
            'medicine_id' => 'required',
            'quantity' => 'required',
+           'project_id' => 'required',
         ]);
 
         $medicineTank = new MedicineTank();
         $medicineTank->tank_id = $request->tank_id;
         $medicineTank->medicine_id = $request->medicine_id;
         $medicineTank->quantity = $request->quantity;
+        $medicineTank->proejct_id = $request->proejct_id;
         $medicineTank->save();
 
         return redirect()->route('medicineTank.index');
@@ -77,6 +81,7 @@ class MedicineTankController extends Controller
     {
         $data['tanks'] = Tank::all();
         $data['medicines'] = Medicine::all();
+        $data['projects'] = Project::all();
         $data['medicineTank'] = $medicineTank;
 
         return view('admin.medicineTank.editMedicineTank',$data);
@@ -95,12 +100,14 @@ class MedicineTankController extends Controller
             'tank_id' => 'required',
             'medicine_id' => 'required',
             'quantity' => 'required',
+            'project_id' => 'required',
         ]);
 
         $medicineTank = MedicineTank::findOrFail($id);
         $medicineTank->tank_id = $request->tank_id;
         $medicineTank->medicine_id = $request->medicine_id;
         $medicineTank->quantity = $request->quantity;
+        $medicineTank->project_id = $request->project_id;
         $medicineTank->save();
 
         return redirect()->route('medicineTank.index');

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Feed;
 use App\FeedTank;
 use App\Tank;
+use App\Project;
 use Illuminate\Http\Request;
 
 class FeedTankController extends Controller
@@ -30,6 +31,7 @@ class FeedTankController extends Controller
     {
         $data['tanks'] = Tank::all();
         $data['feeds'] = Feed::all();
+        $data['projects'] = Project::all();
 
         return view('admin.feedTank.addFeedTank',$data);
     }
@@ -46,12 +48,14 @@ class FeedTankController extends Controller
             'tank_id' => 'required',
             'feed_id' => 'required',
             'quantity' => 'required',
+            'project_id' => 'required',
         ]);
 
         $feedTank = new FeedTank();
         $feedTank->tank_id = $request->tank_id;
         $feedTank->feed_id = $request->feed_id;
         $feedTank->quantity = $request->quantity;
+        $feedTank->project_id = $request->project_id;
         $feedTank->save();
 
         return redirect()->route('feedTank.index');
@@ -79,6 +83,7 @@ class FeedTankController extends Controller
     {
         $data['tanks'] = Tank::all();
         $data['feeds'] = Feed::all();
+        $data['projects'] = Project::all();
         $data['feedTank'] = $feedTank;
 
         return view('admin.feedTank.editFeedTank',$data);
@@ -97,12 +102,14 @@ class FeedTankController extends Controller
             'tank_id' => 'required',
             'feed_id' => 'required',
             'quantity' => 'required',
+            'project_id' => 'required',
         ]);
 
         //$feedTank = new FeedTank();
         $feedTank->tank_id = $request->tank_id;
         $feedTank->feed_id = $request->feed_id;
         $feedTank->quantity = $request->quantity;
+        $feedTank->proejct_id = $request->project_id;
         $feedTank->save();
 
         return redirect()->route('feedTank.index');

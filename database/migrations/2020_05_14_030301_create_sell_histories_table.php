@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFishHealthsTable extends Migration
+class CreateSellHistoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,14 @@ class CreateFishHealthsTable extends Migration
      */
     public function up()
     {
-        Schema::create('fish_healths', function (Blueprint $table) {
+        Schema::create('sell_histories', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->date('date');
-            $table->unsignedBigInteger('project_tank_id');
-            $table->foreign('project_tank_id')->references('id')->on('project_tanks')->onUpdate('cascade')->onDelete('cascade');
-            $table->integer('fish_amount');
-            $table->float('weight');
+            $table->double('unit_price');
+            $table->double('weight');
+            $table->unsignedBigInteger('project_id');
+            $table->foreign('project_id')->references('id')->on('projects')
+                ->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -31,6 +32,6 @@ class CreateFishHealthsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('fish_healths');
+        Schema::dropIfExists('sell_histories');
     }
 }

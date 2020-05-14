@@ -1,10 +1,10 @@
 @extends('layouts.admin.master')
-@section('title','Project Cost Details')
+@section('title','Project Health Test Details')
 @section('content')
     <div class="app-title">
         <div>
             <h1><i class="fa fa-file-text-o"></i> Report</h1>
-            <p>Project Expense Report</p>
+            <p>Fish Health Report</p>
         </div>
         <ul class="app-breadcrumb breadcrumb">
             <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
@@ -17,7 +17,7 @@
                 <section class="invoice">
                     <div class="row mb-4">
                         <div class="col-6">
-                            <h2 class="card-header">Project Cost Details of {{ $project->name }}</h2>
+                            <h2 class="card-header">Fish Heath Test Details of {{ $project->name }}</h2>
                         </div>
                         <div class="col-6">
                             <h5 class="text-right">Date: {{ date('d-m-Y') }}</h5>
@@ -40,51 +40,37 @@
                                     <th>
                                         Date
                                     </th>
-                                    <th>
-                                        Buy Id
-                                    </th>
 
                                     <th>
-                                        Product Type
+                                       Tank
                                     </th>
                                     <th>
-                                        Product Name
+                                        Fish Amount
                                     </th>
                                     <th>
-                                        Price
+                                        Weight (KG)
                                     </th>
                                     <th></th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($buys as $project)
+                                @foreach($healths as $project)
                                     <tr>
                                         <td>
-                                            {{ $project->created_at }}
+                                            {{ $project->date }}
                                         </td>
 
-                                        <td>
-                                            {{ $project->id }}
-                                        </td>
-
-                                        <td>
-                                            {{$project->Type}}
-                                        </td>
                                         <td>
                                             {{$project->name}}
                                         </td>
                                         <td>
-                                            {{$project->price}}
+                                            {{$project->fish_amount}}
+                                        </td>
+                                        <td>
+                                            {{$project->weight}}
                                         </td>
                                     </tr>
                                 @endforeach
-                                <tr class="card-header">
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td>Total Cost</td>
-                                    <td>{{ $tc }}</td>
-                                </tr>
                                 </tbody>
                             </table>
                         </div>

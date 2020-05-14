@@ -16,11 +16,11 @@ class CreateProjectTanksTable extends Migration
         Schema::create('project_tanks', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('project_id');
-            $table->foreign('project_id')->references('id')->on('projects');
+            $table->foreign('project_id')->references('id')->on('projects')->onUpdate('cascade')->onDelete('cascade');
             $table->unsignedBigInteger('tank_id');
-            $table->foreign('tank_id')->references('id')->on('tanks');
+            $table->foreign('tank_id')->references('id')->on('tanks')->onUpdate('cascade')->onDelete('cascade');
             $table->unsignedBigInteger('fish_id');
-            $table->foreign('fish_id')->references('id')->on('fish');
+            $table->foreign('fish_id')->references('id')->on('fish')->onUpdate('cascade')->onDelete('cascade');
             $table->integer('fish_quantity');
             $table->timestamps();
         });

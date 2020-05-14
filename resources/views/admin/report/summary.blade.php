@@ -1,10 +1,10 @@
 @extends('layouts.admin.master')
-@section('title','Project Cost Details')
+@section('title','Project Summary')
 @section('content')
     <div class="app-title">
         <div>
             <h1><i class="fa fa-file-text-o"></i> Report</h1>
-            <p>Project Expense Report</p>
+            <p>Project Summary Report</p>
         </div>
         <ul class="app-breadcrumb breadcrumb">
             <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
@@ -17,7 +17,7 @@
                 <section class="invoice">
                     <div class="row mb-4">
                         <div class="col-6">
-                            <h2 class="card-header">Project Cost Details of {{ $project->name }}</h2>
+                            <h2 class="card-header">Project Summary of {{ $project->name }}</h2>
                         </div>
                         <div class="col-6">
                             <h5 class="text-right">Date: {{ date('d-m-Y') }}</h5>
@@ -35,56 +35,31 @@
                     <div class="row">
                         <div class="col-12 table-responsive">
                             <table class="table table-striped">
-                                <thead>
-                                <tr>
-                                    <th>
-                                        Date
-                                    </th>
-                                    <th>
-                                        Buy Id
-                                    </th>
-
-                                    <th>
-                                        Product Type
-                                    </th>
-                                    <th>
-                                        Product Name
-                                    </th>
-                                    <th>
-                                        Price
-                                    </th>
-                                    <th></th>
-                                </tr>
-                                </thead>
                                 <tbody>
-                                @foreach($buys as $project)
-                                    <tr>
-                                        <td>
-                                            {{ $project->created_at }}
-                                        </td>
-
-                                        <td>
-                                            {{ $project->id }}
-                                        </td>
-
-                                        <td>
-                                            {{$project->Type}}
-                                        </td>
-                                        <td>
-                                            {{$project->name}}
-                                        </td>
-                                        <td>
-                                            {{$project->price}}
-                                        </td>
+                                    <tr class="card-header">
+                                        <td></td>
+                                        <td></td>
+                                        <td>Total Sales</td>
+                                        <td>{{ $ts }}</td>
+                                        <td></td>
+                                        <td></td>
                                     </tr>
-                                @endforeach
-                                <tr class="card-header">
-                                    <td></td>
+                                    <tr class="card-header">
                                     <td></td>
                                     <td></td>
                                     <td>Total Cost</td>
                                     <td>{{ $tc }}</td>
+                                    <td></td>
+                                    <td></td>
                                 </tr>
+                                    <tr class="card-header">
+                                        <td></td>
+                                        <td></td>
+                                        <td>@if($ts>$tc)Profit@else Loss @endif</td>
+                                        <td>{{ $ts-$tc }}</td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>

@@ -1,10 +1,10 @@
 @extends('layouts.admin.master')
-@section('title','Project Cost Details')
+@section('title','Project Sell Details')
 @section('content')
     <div class="app-title">
         <div>
             <h1><i class="fa fa-file-text-o"></i> Report</h1>
-            <p>Project Expense Report</p>
+            <p>Project Selling Report</p>
         </div>
         <ul class="app-breadcrumb breadcrumb">
             <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
@@ -17,7 +17,7 @@
                 <section class="invoice">
                     <div class="row mb-4">
                         <div class="col-6">
-                            <h2 class="card-header">Project Cost Details of {{ $project->name }}</h2>
+                            <h2 class="card-header">Fish Selling Details of {{ $project->name }}</h2>
                         </div>
                         <div class="col-6">
                             <h5 class="text-right">Date: {{ date('d-m-Y') }}</h5>
@@ -40,46 +40,38 @@
                                     <th>
                                         Date
                                     </th>
-                                    <th>
-                                        Buy Id
-                                    </th>
 
                                     <th>
-                                        Product Type
+                                       Unit Price
                                     </th>
                                     <th>
-                                        Product Name
+                                        Weight
                                     </th>
                                     <th>
-                                        Price
+                                        Sub Total
                                     </th>
                                     <th></th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($buys as $project)
+                                @foreach($sells as $project)
                                     <tr>
                                         <td>
-                                            {{ $project->created_at }}
+                                            {{ $project->date }}
                                         </td>
 
                                         <td>
-                                            {{ $project->id }}
-                                        </td>
-
-                                        <td>
-                                            {{$project->Type}}
+                                            {{$project->unit_price}}
                                         </td>
                                         <td>
-                                            {{$project->name}}
+                                            {{$project->weight}}
                                         </td>
                                         <td>
-                                            {{$project->price}}
+                                            {{$project->weight * $project->unit_price}}
                                         </td>
                                     </tr>
                                 @endforeach
                                 <tr class="card-header">
-                                    <td></td>
                                     <td></td>
                                     <td></td>
                                     <td>Total Cost</td>

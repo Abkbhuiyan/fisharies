@@ -34,8 +34,11 @@ Route::middleware('auth')->group(function () {
     Route::resource('fishHealth','FishHealthController');
     Route::resource('medicineTank','MedicineTankController');
     Route::resource('feedTank','FeedTankController');
+    Route::resource('sellHistory','SellHistoryController');
     Route::get('report/info','ReportController@info')->name('report.info');
     Route::get('report/details/{id}','ReportController@details')->name('report.details');
+    Route::get('report/manage','ReportController@manage')->name('report.manage');
+    Route::post('report/manage','ReportController@generate')->name('report.manage');
 });
 
 

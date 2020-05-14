@@ -20,7 +20,7 @@ class CreateBuyHistoriesTable extends Migration
             $table->integer('price');
             $table->string('supplier');
             $table->unsignedBigInteger('project_id');
-            $table->foreign('project_id')->references('id')->on('projects');
+            $table->foreign('project_id')->references('id')->on('projects')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -11,6 +11,16 @@
                         @csrf
                         @method('put')
                         <div class="form-group">
+                            <label for="exampleInputName1">Project Name</label>
+                            <select name="project_id" class="form-control" id="">
+                                @foreach($tanks as $tank)
+                                    <option @if($feedTank->project_id == $tank->id)selected @endif value="{{ $tank->id }}">{{$tank->name}}</option>
+                                @endforeach
+                            </select>  @error('project_id')
+                            {{ $message }}
+                            @enderror
+                        </div>
+                        <div class="form-group">
                             <label for="exampleInputName1">Tank Name</label>
                             <select name="tank_id" class="form-control" id="">
                                 @foreach($tanks as $tank)
